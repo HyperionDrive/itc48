@@ -1,0 +1,226 @@
+@import "fonts"
+@import "libs"
+@import "vars"
+
+*::-webkit-input-placeholder
+	color: #666
+	opacity: 1
+
+*:-moz-placeholder
+	color: #666
+	opacity: 1
+
+*::-moz-placeholder
+	color: #666
+	opacity: 1
+
+*:-ms-input-placeholder
+	color: #666
+	opacity: 1
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid
+	color: #666
+body input:required:valid,
+body textarea:required:valid
+	color: #666
+
+html, body
+	height: 100%
+
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.75
+	font-family: $default-font
+	overflow-x: hidden
+	opacity: 1
+
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+
+.logo-top
+	a
+		transition: all .3s
+		&:hover
+			text-decoration: none
+			opacity: .9
+	img
+		height: 100px
+
+.site-name
+ 	padding-top: 15px
+		a
+			font-size: 25px
+			line-height: 1.3
+			color: #fff
+			transition: all .3s
+			&:hover
+				text-decoration: none
+				opacity: .9
+
+.header-top
+	background-color: #3d4754
+	padding: 10px 0;
+
+.contacts-list
+	list-style-type: none
+	margin: 0
+	padding: 0
+
+.contacts-item
+	color: #fff
+	i
+		margin-right: 10px
+
+.special-top
+	a
+		color: #fff
+		text-align: center
+		font-size: 15px
+		i
+			font-size: 20px
+    	margin-right: 3px
+
+.socail-list
+	list-style-type: none
+	padding: 0
+	margin: 0
+
+.socail-item
+	display: inline-block
+	a
+		color: #fff
+		opacity: .5
+		&:hover
+			text-decoration: none
+			opacity: 1
+
+.top-menu
+	nav
+		margin: 0
+
+.header-slider
+	img
+		min-width: 100%
+	.item
+		max-height: 550px
+		overflow: hidden
+
+.about-img
+	img
+		max-width: 100%
+
+.about-link
+	margin-top: 30px
+
+.more-link
+	font-size: 13px
+	color: #28a4c9
+	text-transform: uppercase
+
+.news
+	h2
+		margin-bottom: 30px
+
+.about
+  background-color: rgb(243, 243, 243)
+  padding: 30px 0
+  margin-bottom: 60px
+
+.news 
+	margin-bottom: 60px
+
+.client-and-partners-header, .line-head
+	margin-bottom: 30px
+	position: relative
+	text-align: center
+	h2
+		display: inline-block
+		background: #fff
+		position: relative
+		padding: 10px
+	&::before
+		content: ' '
+		position: absolute
+		height: 1px
+		background: #000
+		width: 100%
+		left: 0
+		top: 57%
+
+.partners-slider
+	margin-bottom: 60px
+	div
+		padding: 0 20px
+		overflow: hidden
+	img
+		height: 100px
+		width: 100%
+
+.slick-arrow
+	background: rgba(0, 0, 0, 0.56)!important
+	height: 100px!important
+	width: 40px!important
+	z-index: 999;
+
+.slick-next 
+	right: 0px
+
+.slick-prev
+	left: 0px
+
+footer
+	.footer-top
+    background-color: #3d4754;
+    padding: 60px 0px
+    padding-bottom: 30px
+
+
+.bot-menu-list
+	list-style-type: none
+
+.bot-menu-item
+	a
+		color: #fff
+
+.bot-contacts-list
+	list-style-type: none
+
+.bot-contacts-item
+	color: #fff
+	i
+		margin-right: 10px
+
+#twitter
+	max-height: 600px 
+	max-width: 100%
+	padding: 20px
+	background: #fff
+	border-radius: 3px
+	box-shadow: 2px 2px 3px rgba(0,0,0,.1)
+	overflow-y: scroll
+
+.twitter-section
+	h2
+		margin-bottom: 30px
+
+.news-twitts
+	margin-bottom: 60px		
+
+.useful
+	margin-bottom: 60px
+
+.useful-links-slider
+	div
+		padding: 0 20px
+	img
+		height: 100px
+	a
+		margin-bottom: 0
+		padding: 0
+
+@import "media" // Всегда в конце

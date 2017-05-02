@@ -27,10 +27,13 @@ gulp.task('common-js', function() {
 
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
-		'app/libs/jquery/dist/jquery.min.js',
+		// 'app/libs/jquery/dist/jquery.min.js',
 		'app/libs/bootstrap-grid/bootstrap.min.js',
 		'app/libs/slick/slick.min.js',
-		'app/libs/scrollbar/scrollbar.js',
+		'app/libs/BVI/js/responsivevoice.min.js',
+		'app/libs/BVI/js/bvi-panel.min.js',
+		'app/libs/BVI/js/bvi.min.js',
+		'app/libs/BVI/js/js.cookie.js',
 		'app/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))

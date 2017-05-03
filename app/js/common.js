@@ -4,7 +4,7 @@ $(function() {
 		infinite: true,
 	  slidesToShow: 3,
 	  slidesToScroll: 1,
-	  variableWidth: false
+	  variableWidth: true
 	});
 
 	$('.useful-links-slider').slick({
@@ -13,9 +13,6 @@ $(function() {
 	  slidesToScroll: 1,
 	  variableWidth: false
 	});
-
-	
-	
 
 
 });

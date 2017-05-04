@@ -4,3 +4,5 @@
 /app/css/
 /**/*.psd
 /**/Thumbs.db
+/files/
+/upload/

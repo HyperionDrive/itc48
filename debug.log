@@ -1,0 +1,4 @@
+[0511/144556.055:ERROR:process_reader_win.cc(142)] SuspendThread: Отказано в доступе. (0x5)
+[0511/144556.062:ERROR:exception_snapshot_win.cc(87)] thread ID 5652 not found in process
+[0511/144556.062:WARNING:crash_report_exception_handler.cc(60)] ProcessSnapshotWin::Initialize failed
+[0511/144556.062:ERROR:scoped_process_suspend.cc(38)] NtResumeProcess: Попытка доступа к процессу, выполняющему процедуру завершения.  (0xc000010a)

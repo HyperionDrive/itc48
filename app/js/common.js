@@ -60,6 +60,73 @@ $(function() {
 	//end steps-snippet
 
 
+	// start vertical tabs
+	$("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+	       e.preventDefault();
+	       $(this).siblings('a.active').removeClass("active");
+	       $(this).addClass("active");
+	       var index = $(this).index();
+	       $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+	       $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+	   });
+	// end vertical tabs
+
+
+	// start поиск по реестру сертификатов
+	(function () {
+		var elem = $("#searchResult");
+		var obj;
+		var inputDate = $("#searchDate");
+		var searchOrg = $("#searchOrg");
+		var searchSert = $("#searchSert");
+
+		if(elem.length) {
+			$.ajax({
+			  method: "POST",
+			  url: "/include/sertificatesJson.php"
+			  // data: { name: "John", location: "Boston" }
+			})
+	  		.done(function( msg ) {
+		    	obj = JSON.parse(msg);
+		  	});
+		}
+
+		$.each([inputDate, searchOrg, searchSert], function () {
+			
+			$(this).on('blur', function(){
+				var field = $(this).data('field');
+				var value = $(this).val().trim().toLowerCase();
+
+				if(!value){
+					return false;
+				}
+				var result = doSearch(obj, field, value);
+
+				console.log(result);
+				if(!result.root.length){
+					elem.html('Ничего не найдено!');
+					return false
+				}
+
+				if(result.root.length > 20){
+					elem.html('Уточните поиск');
+					return false
+				}
+
+
+
+				 htm = Defiant.render('books_template', result);
+				 elem.html(htm);
+
+			});
+		});
+		
+
+		
+	})();
+	// end поиск по реестру сертификатов
+
+
 });
 
 

@@ -35,6 +35,8 @@ gulp.task('js', ['common-js'], function() {
 		'app/libs/BVI/js/bvi.min.js',
 		'app/libs/BVI/js/js.cookie.js',
 		'app/libs/parallax/parallax.min.js',
+		'app/libs/defiant/defiant.js',
+		'app/libs/functions/functions.js', // Всегда перед common.min.js
 		'app/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))

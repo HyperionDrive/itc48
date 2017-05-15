@@ -3,6 +3,9 @@
 @import "libs"
 @import "vars"
 
+*
+	box-sizing: border-box
+
 *::-webkit-input-placeholder
 	color: #666
 	opacity: 1
@@ -54,8 +57,6 @@ header, footer
 
 .logo-top
 	position: relative
-	margin-top: -6px
-	margin-bottom: -10px
 	a
 		transition: all .3s
 		&:hover
@@ -88,6 +89,7 @@ header, footer
 .header-top
 	background-color: #3d4754
 	padding: 10px 0;
+	padding-bottom: 0
 
 .contacts-list
 	list-style-type: none
@@ -139,10 +141,32 @@ header, footer
     background-image: none
 
 .top-menu
+
 	nav
 		margin: 0
+		.logo-top
+			opacity: 0
+			height: 0
 	a
-	 font-size: 15px
+		font-size: 15px
+	nav.affix
+    	width: 100%
+    	top: 0px
+    	left: 0px
+    	z-index: 10
+    	.container
+    		position: relative
+    		overflow: visible
+    	.logo-top
+    		opacity: 1
+    		left: -60px
+    		top: -2px
+    		img
+    			height: 50px
+    		.logo-text
+    			top: 4px
+    			font-size: 9px
+    			left: 11px
 
 .header-slider
 	img
@@ -321,5 +345,27 @@ footer
   padding: 3px 10px
   margin-right: 15px
   font-size: 14px
+
+.header-slider-item
+	position: relative
+	outline: none !important
+	transition all .5s
+	opacity: 0.5
+	filter: grayscale(100%)
+.header-slider-item.slick-center
+	opacity: 1
+	filter: grayscale(0%);
+	.header-slider-content
+		opacity: 1!important
+
+.header-slider-content
+	transition: all .5s
+	opacity: 0
+	position: absolute
+	bottom: 0	
+	width: 100%
+	padding: 35px
+	color: #fff
+	background-color: rgba(76, 120, 180, 0.76)
 
 @import "media" // Всегда в конце

@@ -96,10 +96,18 @@ $(function() {
 	// start поиск по реестру сертификатов
 	(function () {
 		var elem = $("#searchResult");
-		var obj= {};
+		var obj= {root:[]};
 		var inputDate = $("#searchDate");
 		var searchOrg = $("#searchOrg");
 		var searchSert = $("#searchSert");
+		var loadText = $('#loadText');
+		var form = $('.searchRegister');
+		var table = $('.resultTable ');
+		var error = $("#searchResultError");
+
+		table.hide();
+		error.hide();
+		form.hide();
 
 		if(elem.length) {
 			var feedurl_start = "https://spreadsheets.google.com/feeds/";
@@ -113,52 +121,81 @@ $(function() {
 		            sheeturl = sheeturl.replace("basic", "values");
 		            var sheet_title = v_sheet.content["$t"]; // to know which sheet you're dealing with
 		            $.getJSON(sheeturl, function(sheetjson){
-		                obj[k_sheet] = sheetjson.feed.entry;
-		                if (!--count) {
-			            	flag = 1;
-			            	console.log(obj);
-			            	$.each([inputDate, searchOrg, searchSert], function () {
-			            		
-			            		$(this).on('blur', function(){
-			            			var field = $(this).data('field');
-			            			var value = $(this).val().trim().toLowerCase();
-
-			            			if(!value){
-			            				return false;
-			            			}
-			            			var result = doSearch(obj, field, value);
-
-			            			console.log(result);
-			            			if(!result.root.length){
-			            				elem.html('Ничего не найдено!');
-			            				return false
-			            			}
-
-			            			if(result.root.length > 20){
-			            				elem.html('Уточните поиск');
-			            				return false
-			            			}
-
-
-
-			            			 htm = Defiant.render('books_template', result);
-			            			 elem.html(htm);
-
-			            		});
-			            	});
-		        		}
+		                obj.root[k_sheet] = sheetjson.feed.entry;
 		            });
 		            
 		        });
 		    });
+
+
+		    $( document ).ajaxStop(function(){
+
+		    	obj = Defiant.getSnapshot(obj);
+
+		    	setTimeout(function(){
+		    		form.show();
+		    		loadText.hide();
+		    	},1500);
+		    	
+
+		    	$.each([inputDate, searchOrg, searchSert], function () {
+		    		
+		    		$(this).on('blur', function(){
+
+		    			
+
+		    			var field = $(this).data('field');
+		    			var value = $(this).val().trim().toLowerCase().replace(/"/g,"");
+		    			console.log(value);
+		    			$(this).val('');
+
+		    	
+
+		    			if(!value){
+		    				return false;
+		    			}
+
+		    			loadText.show();
+		    			error.hide()
+		    			table.find('tbody').html("");
+		    			var result;
+		    			setTimeout(function () {
+		    				result = doSearch(obj, field, value);
+
+
+		    				if(!result){
+		    					loadText.hide();
+		    					error.show().html('Ничего не найдено, уточните запрос !');
+		    					return false;
+		    				}
+
+		    				if(result.root.length > 100){
+		    					loadText.hide();
+		    					error.show().html('Найдено свыше 100 записей, пожалуйста уточните запрос');
+		    					return false
+		    				}
+
+
+		    				$.each(result.root, function (i, k) {
+		    					elem.find(".resultTable").append("<tr><td>"+k.gsx$рег.$t+"</td><td>"+k.gsx$дата.$t+"</td><td>"+k.gsx$организация.$t+"</td><td>"+k.gsx$серийныйномерскп.$t+"</td><tr>");
+		    				});
+
+		    				loadText.hide();
+		    				table.show()
+
+
+		    			}, 300);
+		    			//var result = doSearch(obj, field, value);
+
+		    			
+		    			
+
+		    		});
+		    	});
+
+        	});
 		}
 
-		
-
-		
-		
-
-		
 	})();
 	// end поиск по реестру сертификатов
 

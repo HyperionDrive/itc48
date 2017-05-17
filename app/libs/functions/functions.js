@@ -5,7 +5,11 @@ function doSearch(obj, field, value) {
 
   var array = [];
 
-  var result = JSON.search(obj, '//*[contains(translate('+field+', "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ", "абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz"),"'+value+'")]');
+  var result;
+
+  result = JSON.search(obj, '//root//*[contains(translate(*, \'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ"\', "абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyz"), "'+value+'")]/..');
+
+  console.log(result);
 
   if(!result.length){
 
